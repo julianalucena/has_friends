@@ -82,6 +82,10 @@ describe "has_friends" do
     it "should not be @vader" do
       @vader.is?(@leia).should_not be_true
     end
+
+    it "should return vader and luke friends in common" do
+      @vader.friends_in_common_with(@luke).should == [@leia]
+    end
   end
   
   describe "friendship request" do

@@ -66,6 +66,10 @@ module SimplesIdeias
         self.id == friend.id
       end
 
+      def friends_in_common_with(user)
+        self.friends.select { |friend| user.friends.include?(friend) }
+      end
+
       private
       def destroy_all_friendships
         Friendship.delete_all({:user_id => id})
