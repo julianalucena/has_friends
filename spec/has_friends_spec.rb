@@ -30,6 +30,10 @@ describe "has_friends" do
     it "should respond to friends? method" do
       @vader.should respond_to(:friends?)
     end
+
+    it "should responde to friends_not_in_common_with" do
+      @vader.should respond_to(:friends_not_in_common_with)
+    end
   end
 
   describe "friends" do
@@ -85,6 +89,11 @@ describe "has_friends" do
 
     it "should return vader and luke friends in common" do
       @vader.friends_in_common_with(@luke).should == [@leia]
+    end
+
+    it "should return vader and luke friends not in common" do
+      create_friendship @vader, @han_solo
+      @vader.friends_not_in_common_with(@luke).should == [@han_solo]
     end
   end
 
