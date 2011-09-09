@@ -83,10 +83,13 @@ module SimplesIdeias
       # Destroyes (in both ways) the friendship
       def destroy_friendship_with(friend)
         friendship = friendship_for(friend)
+        other_friendship = friend.friendship_for(self)
         friendship.destroy
+        other_friendship.destroy
       end
 
       private
+      # Destroyes all friendships of user
       def destroy_all_friendships
         Friendship.delete_all({:user_id => id})
         Friendship.delete_all({:friend_id => id})
