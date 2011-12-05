@@ -12,7 +12,7 @@ module SimplesIdeias
         has_many :friends, :through => :friendships, :source => :friend, :conditions => "friendships.status = 'accepted'"
         has_many :friends_pending, :through => :friendships, :source => :friend, :conditions => "friendships.status = 'pending'"
 
-        after_destroy :destroy_all_friendships
+        before_destroy :destroy_all_friendships
       end
     end
 
@@ -91,8 +91,8 @@ module SimplesIdeias
       private
       # Destroyes all friendships of user
       def destroy_all_friendships
-        Friendship.delete_all({:user_id => id})
-        Friendship.delete_all({:friend_id => id})
+        Friendship.destroy_all({:user_id => id})
+        Friendship.destroy_all({:friend_id => id})
       end
     end
   end

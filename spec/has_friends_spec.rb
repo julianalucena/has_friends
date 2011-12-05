@@ -1,4 +1,5 @@
 require "spec_helper"
+require "ruby-debug"
 
 # unset models used for testing purposes
 Object.unset_class('User')
@@ -204,7 +205,6 @@ describe "has_friends" do
         @thing = Thing.create(:friendship => @friendships.first)
         expect {
           @vader.destroy
-          @han_solo.destroy
         }.should change(Thing, :count).by(-1)
       end
     end
